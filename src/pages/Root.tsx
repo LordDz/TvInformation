@@ -1,8 +1,5 @@
 import * as React from 'react';
-import { FunctionComponent, useState } from 'react';
-import { TvCardContainer } from '../components/cards/tvCardContainer';
-import { HrLine } from '../components/misc/hrLine';
-import { SearchContainer } from '../components/search/searchContainer';
+import { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { SearchView } from './SearchView';

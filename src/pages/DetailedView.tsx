@@ -1,40 +1,42 @@
 import * as React from 'react';
 import { FunctionComponent, useEffect, useState } from 'react';
-import { TvCardContainer } from '../components/cards/tvCardContainer';
-import { HrLine } from '../components/misc/hrLine';
-import { SearchContainer } from '../components/search/searchContainer';
-import styled from 'styled-components';
+import axios from 'axios';
+
 import { TvCardExpanded } from '../components/cards/tvCardExpanded';
-import { useParams } from 'react-router-dom';
 import { isEmpty, replace } from 'lodash';
+import { ErrorMessage } from '../components/misc/errorMessage';
 
 export interface IProps {
 }
 
+const timeout = 1000 * 15;
 
 export const DetailedView: FunctionComponent<IProps> = ({  }) => {
   const [searchResult, setSearchResult] = useState<any>();
+  const [errorMsg, setErrorMsg] = useState<string>();
 
    const onFoundShow = (results: any) => {
     setSearchResult(results);
   }
 
   async function apiSearch(id: string) {
-    const response = await fetch(
-      `https://api.tvmaze.com/shows/${id}`
-    );
-    const result = await response.json();
-    console.log("tv show result: ", result);
-    return result;
+    axios.get(`https://api.tvmaze.com/shows/${id}`, {timeout: timeout})
+    .then((response: any) => {
+        console.log("response: ", response.data);
+        console.log("response json: ", response.data);
+        onFoundShow(response.data);
+    })
+    .catch((error: any)  => {
+        console.error("error: ", error);
+        setErrorMsg(error.message ?? "There was an error when fetching the data.");
+    });
   }
   
   const searchId = async (searchText: string) => {
     if (!isEmpty(searchText)) {
-      const results = await apiSearch(searchText);
-      if (!isEmpty(results)) {
-        onFoundShow(results);
+        setErrorMsg("");
+        apiSearch(searchText);
       }
-    }
   }
 
   useEffect(() => {
@@ -46,6 +48,7 @@ export const DetailedView: FunctionComponent<IProps> = ({  }) => {
 
   return (
   <>
+    {!isEmpty(errorMsg) && <ErrorMessage message={errorMsg} /> }
   {!isEmpty(searchResult) ? 
     <TvCardExpanded show={searchResult} /> : <h1>Show not found</h1>
     }

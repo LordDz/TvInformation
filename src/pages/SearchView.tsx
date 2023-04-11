@@ -3,7 +3,6 @@ import { FunctionComponent, useState } from 'react';
 import { TvCardContainer } from '../components/cards/tvCardContainer';
 import { HrLine } from '../components/misc/hrLine';
 import { SearchContainer } from '../components/search/searchContainer';
-import styled from 'styled-components';
 
 export interface IProps {
 }
