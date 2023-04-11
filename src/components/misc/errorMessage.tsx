@@ -1,14 +1,16 @@
-import * as React from 'react';
+import * as React from "react";
 import styled from "styled-components";
-import { FunctionComponent} from 'react';
+import { FunctionComponent } from "react";
 
 export interface IProps {
   message?: string;
 }
 
-export const ErrorMessage: FunctionComponent<IProps> = ({ message }) => <TextError>
-  <p>{message}</p>
-</TextError>
+export const ErrorMessage: FunctionComponent<IProps> = ({ message }) => (
+  <TextError>
+    <p>{message}</p>
+  </TextError>
+);
 
 const TextError = styled.div`
   background: red;

@@ -1,32 +1,30 @@
-import * as React from 'react';
-import { FunctionComponent } from 'react';
-import styled from 'styled-components';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { SearchView } from './SearchView';
-import { DetailedView } from './DetailedView';
+import * as React from "react";
+import { FunctionComponent } from "react";
+import styled from "styled-components";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { SearchView } from "./SearchView";
+import { DetailedView } from "./DetailedView";
 
-export interface IProps {
-}
+export interface IProps {}
 
 export type TShow = {
-    name: string;
-    summary: string;
-    type: string;
-    url: string;
-    ended: string;
-    image?: {
-      medium?: string;
-      original?: string;
-    }
-}
+  name: string;
+  summary: string;
+  type: string;
+  url: string;
+  ended: string;
+  image?: {
+    medium?: string;
+    original?: string;
+  };
+};
 
 export type TResult = {
   score: number;
   show: TShow;
 };
 
-export const Root: FunctionComponent<IProps> = ({  }) => {
-
+export const Root: FunctionComponent<IProps> = ({}) => {
   const router = createBrowserRouter([
     {
       path: "/",
@@ -35,17 +33,17 @@ export const Root: FunctionComponent<IProps> = ({  }) => {
     {
       path: "/*",
       element: <DetailedView />,
-    }
+    },
   ]);
-  
+
   return (
-  <MainBody>
-    <MainContainer>
-    <RouterProvider router={router} />
-    </MainContainer>
-  </MainBody>
-  )
-}
+    <MainBody>
+      <MainContainer>
+        <RouterProvider router={router} />
+      </MainContainer>
+    </MainBody>
+  );
+};
 
 const MainBody = styled.main`
   background-color: rgb(26 26 26);
