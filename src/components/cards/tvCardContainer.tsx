@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from "styled-components";
 import { FunctionComponent} from 'react';
 import {  map } from 'lodash';
-import { TResult, TShow } from '../../pages/SearchRoot';
+import { TResult, TShow } from '../../pages/SearchView';
 import { TvCard } from './tvCard';
 
 export interface IProps {
@@ -14,25 +14,23 @@ export const TvCardContainer: FunctionComponent<IProps> = ({ searchResults }) =>
 {
   return (
     <Wrapper>
-
-    <Container>
-{
-   map(searchResults, (result: TResult, key: string) => 
-   <TvCard key={key} score={result.score} show={result.show} />
-  )
-}
-  </Container>
+      <Container>
+      {
+        map(searchResults, (result: TResult, key: string) => 
+        <TvCard key={key} show={result.show} />
+        )
+      }
+    </Container>
   </Wrapper>
-
   )
 };
 
 const Wrapper = styled.section`
-padding: 2em;
+  padding: 2em;
 `;
 
 const Container = styled.section`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(230px, 250px));
   gap: 30px;
 `;

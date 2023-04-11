@@ -10,6 +10,7 @@ export interface IProps {
 
 export type TShow = {
     name: string;
+    id: number;
     summary: string;
     type: string;
     url: string;
@@ -25,36 +26,18 @@ export type TResult = {
   show: TShow;
 };
 
-export const SearchRoot: FunctionComponent<IProps> = ({  }) => {
+export const SearchView: FunctionComponent<IProps> = ({  }) => {
   const [searchResults, setSearchResults] = useState<any>();
 
   const onFoundShows = (results: any) => {
-    console.log("onFoundShows: ", results);
     setSearchResults(results);
   }
   
-return (
-<MainBody>
-<MainSearch>
-
-<SearchContainer onFoundShows={onFoundShows} />
- <HrLine />
-  <TvCardContainer searchResults={searchResults} />
-</MainSearch>
-
-</MainBody>
-) 
+  return (
+    <>
+      <SearchContainer onFoundShows={onFoundShows} />
+      <HrLine />
+      <TvCardContainer searchResults={searchResults} />
+    </>
+  )
 }
-
-const MainBody = styled.main`
-
-background-color: rgb(26 26 26);
-
-`;
-
-const MainSearch = styled.section`
-  width: 60%;
-  margin: auto;
-  background-color: #141414;
-  padding: 2em;
-`;

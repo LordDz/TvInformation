@@ -17,7 +17,7 @@ export const Searchbar: FunctionComponent<IProps> = ({ onSearch }) => {
     const onChange = (e: any) => {
       debounceSearch(e.target.value);
     }
-    return <InputText type="text" placeholder='Search for your favorite tv show' onChange={onChange} />;    
+    return <InputText type="text" placeholder='Search for your favorite tv shows' onChange={onChange} />;    
 }
 
 const InputText = styled.input`
@@ -27,7 +27,5 @@ const InputText = styled.input`
   border: none;
   border-radius: 2px;
   
-  :active {
     outline: none;
-  }
 `;

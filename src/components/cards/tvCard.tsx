@@ -1,30 +1,31 @@
 import * as React from 'react';
 import styled from "styled-components";
 import { FunctionComponent} from 'react';
-import { TShow } from '../../pages/SearchRoot';
+import { TShow } from '../../pages/SearchView';
 
 export interface IProps {
-  score: number;
   show: TShow;
 }
 
-export const TvCard: FunctionComponent<IProps> = ({ score, show }) => <Card href={show.url} target='_blank'>
-  <div>
-  <div className='info'>
-      <h2>
-      {show.name}
-      </h2>
-    </div>
-      <img src={ show.image?.medium ?? ""} alt={show.image?.medium ?? "N/A"} />
-  </div>
-
-</Card>
+export const TvCard: FunctionComponent<IProps> = ({ show }) => {
+	return (
+		<Card href={`/${show.id}`} target='_blank'>
+		<div>
+			<div className='info'>
+				<h2>
+				{show.name}
+				</h2>
+			</div>
+			<img src={ show.image?.medium ?? ""} alt={show.image?.medium ?? "N/A"} />
+		</div>
+	  </Card>
+	)
+}
 
 const Card = styled.a`
-  width: 210px;
+	width: 210px;
 	height: 360px;
-
-  border-radius: 2px;
+	border-radius: 2px;
 	border-radius: 15px;
 	padding: 1.5rem;
 	background: white;
@@ -33,7 +34,7 @@ const Card = styled.a`
 	align-items: flex-end;
 	transition: 0.4s ease-out;
 	box-shadow: 0px 7px 10px rgba(black, 0.5);
-  text-decoration: none;
+	text-decoration: none;
 	
   :hover {
 		transform: translateY(5px);
